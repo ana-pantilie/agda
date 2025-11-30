@@ -6,7 +6,7 @@ import Control.Monad.Except
 import Control.Monad.Reader
 import Control.Monad.State
 import Control.Monad.Trans.Maybe
-import Control.Monad.Writer
+import Control.Monad.Writer.CPS
 
 import Data.Char
 import qualified Data.List as List

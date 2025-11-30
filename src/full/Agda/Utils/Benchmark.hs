@@ -10,7 +10,8 @@ import Control.DeepSeq
 import qualified Control.Exception as E (evaluate)
 import Control.Monad.Except
 import Control.Monad.Reader
-import Control.Monad.Writer
+import Control.Monad.Writer.CPS
+import Control.Monad.Trans.Writer.CPS (writerT, runWriterT)
 import Control.Monad.State
 import Control.Monad.IO.Class ( MonadIO(..) )
 
@@ -162,7 +163,7 @@ instance (MonadBench m, Monoid w) => MonadBench (WriterT w m) where
   getBenchmark    = lift $ getBenchmark
   putBenchmark    = lift . putBenchmark
   modifyBenchmark = lift . modifyBenchmark
-  finally m f = WriterT $ finally (runWriterT m) (runWriterT f)
+  finally m f = writerT $ finally (runWriterT m) (runWriterT f)
 
 instance MonadBench m => MonadBench (StateT r m) where
   type BenchPhase (StateT r m) = BenchPhase m

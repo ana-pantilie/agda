@@ -19,7 +19,8 @@ module Agda.Utils.Update
 import Control.Monad.Identity
 import Control.Monad.Trans
 import Control.Monad.Trans.Control
-import Control.Monad.Writer.Strict ( MonadWriter(..), Writer, WriterT, mapWriterT, runWriterT )
+import Control.Monad.Writer.CPS ( MonadWriter(..), Writer, WriterT, mapWriterT )
+import Control.Monad.Trans.Writer.CPS (runWriterT, writerT)
 
 import Data.Monoid ( Any(..) )
 
@@ -36,16 +37,21 @@ class Monad m => MonadChange m where
 newtype ChangeT m a = ChangeT { fromChangeT :: WriterT Any m a }
   deriving (Functor, Applicative, Monad, MonadTrans, MonadFail, MonadIO)
 
+instance Monoid w => MonadTransControl (WriterT w) where
+  type StT (WriterT w) a = (a, w)
+  liftWith f = writerT $ (\x -> (x, mempty)) <$> (f $ runWriterT)
+  restoreT = writerT
+
 -- This instance cannot be derived in older ghcs like 8.0
 -- because of the associated type synonym.
 -- 8.4 can derive it, but needs UndecidableInstances.
 instance MonadTransControl ChangeT where
   type StT ChangeT a = (a, Any) -- StT (WriterT Any) a  would require UndecidableInstances
-  liftWith f = ChangeT $ liftWith $ \ runWriterT -> f $ runWriterT . fromChangeT
+  liftWith f = ChangeT $ liftWith $ \_ -> f $ runWriterT . fromChangeT
   -- Andreas, 2020-04-17: these point-free variants do not seem to type check:
   -- liftWith f = ChangeT $ liftWith $ f . (. fromChangeT)
   -- liftWith = ChangeT . liftWith . (. (. fromChangeT))
-  restoreT = ChangeT . restoreT
+  restoreT = ChangeT . writerT
 
 instance Monad m => MonadChange (ChangeT m) where
   tellDirty     = ChangeT $ tell $ Any True
@@ -59,7 +65,7 @@ runChangeT = fmap (second getAny) . runWriterT . fromChangeT
 {-# INLINE runChangeT #-}
 
 -- | Map a 'ChangeT' computation (monad transformer action).
-mapChangeT :: (m (a, Any) -> n (b, Any)) -> ChangeT m a -> ChangeT n b
+mapChangeT :: Monad n => (m (a, Any) -> n (b, Any)) -> ChangeT m a -> ChangeT n b
 mapChangeT f (ChangeT m) = ChangeT (mapWriterT f m)
 {-# INLINE mapChangeT #-}
 

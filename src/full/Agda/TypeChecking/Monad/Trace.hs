@@ -9,7 +9,7 @@ import Control.Monad.Reader         ( ReaderT  (ReaderT  ), runReaderT   )
 import Control.Monad.State          ( StateT   (StateT   ), runStateT    )
 import Control.Monad.Trans.Identity ( IdentityT(IdentityT), runIdentityT )
 import Control.Monad.Trans.Maybe    ( MaybeT   (MaybeT   ), runMaybeT    )
-import Control.Monad.Writer         ( WriterT  (WriterT  ), runWriterT   )
+import Control.Monad.Trans.Writer.CPS         ( WriterT, writerT, runWriterT   )
 
 import qualified Data.Set as Set
 
@@ -133,7 +133,7 @@ instance MonadTrace m => MonadTrace (StateT s m) where
   traceClosureCall c f = StateT (traceClosureCall c . runStateT f)
 
 instance (MonadTrace m, Monoid w) => MonadTrace (WriterT w m) where
-  traceClosureCall c f = WriterT $ traceClosureCall c $ runWriterT f
+  traceClosureCall c f = writerT $ traceClosureCall c $ runWriterT f
 
 instance MonadTrace m => MonadTrace (ExceptT e m) where
   traceClosureCall c f = ExceptT $ traceClosureCall c $ runExceptT f

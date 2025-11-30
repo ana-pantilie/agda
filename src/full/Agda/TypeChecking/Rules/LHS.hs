@@ -16,7 +16,7 @@ import Data.Maybe
 
 import Control.Monad.Except       ( MonadError(..), ExceptT(..), runExceptT )
 import Control.Monad.Reader       ( MonadReader(..), asks, runReaderT )
-import Control.Monad.Writer       ( MonadWriter(..), runWriterT )
+import Control.Monad.Writer.CPS       ( MonadWriter(..), runWriterT )
 import Control.Monad.Trans.Maybe
 
 import Data.IntSet (IntSet)

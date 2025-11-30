@@ -53,8 +53,9 @@ else
 endif
 
 # AGDA_BIN can be set in the system environment.
-AGDA_BIN ?= $(BUILD_DIR)/build/agda/agda
-AGDA_BIN := $(abspath $(AGDA_BIN))
+# AGDA_BIN ?= $(BUILD_DIR)/build/agda/agda
+# AGDA_BIN := $(abspath $(AGDA_BIN))
+AGDA_BIN := /home/ana/Workspace/IOG/agda/dist-newstyle/build/x86_64-linux/ghc-9.10.1/Agda-2.9.0/x/agda/build/agda/agda
 
 # AGDA_MODE can be set in the system environment.
 AGDA_MODE ?= $(BUILD_DIR)/build/agda-mode/agda-mode

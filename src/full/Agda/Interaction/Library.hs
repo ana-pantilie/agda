@@ -48,7 +48,8 @@ module Agda.Interaction.Library
 
 import qualified Control.Exception as E
 import Control.Monad.Except   ( runExceptT, MonadError, throwError )
-import Control.Monad.Writer   ( Writer, runWriterT, tell )
+import Control.Monad.Writer.CPS   ( Writer, tell )
+import Control.Monad.Trans.Writer.CPS   ( runWriterT )
 import Control.Monad.IO.Class ( MonadIO(..) )
 
 import Data.Bifunctor ( second )

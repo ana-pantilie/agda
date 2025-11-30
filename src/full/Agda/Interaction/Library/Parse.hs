@@ -31,7 +31,7 @@ module Agda.Interaction.Library.Parse
 
 import Control.Monad
 import Control.Monad.Except
-import Control.Monad.Writer
+import Control.Monad.Writer.CPS
 import Data.Char
 import qualified Data.List as List
 import Data.Text (Text)

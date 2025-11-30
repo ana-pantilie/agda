@@ -190,7 +190,7 @@ import Prelude hiding ( null, not, (&&), (||) )
 import Control.DeepSeq
 import Control.Monad        ( (>=>), when, void )
 import Control.Monad.Except ( ExceptT, MonadError(throwError), runExceptT )
-import Control.Monad.Writer ( Writer, runWriter, MonadWriter(..) )
+import Control.Monad.Writer.CPS ( Writer, runWriter, MonadWriter(..) )
 
 import Data.Bifunctor           ( second )
 import Data.Function            ( (&) )

@@ -6,7 +6,7 @@ module Agda.TypeChecking.Rules.Decl where
 
 import Prelude hiding ( null )
 
-import Control.Monad.Writer (tell)
+import Control.Monad.Writer.CPS (tell)
 
 import Data.Either (partitionEithers)
 import qualified Data.Foldable as Fold

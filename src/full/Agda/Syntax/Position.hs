@@ -79,7 +79,7 @@ import Prelude hiding ( null )
 
 import Control.DeepSeq
 import Control.Monad
-import Control.Monad.Writer (runWriter, tell)
+import Control.Monad.Writer.CPS (runWriter, tell)
 
 import qualified Data.Foldable as Fold
 import Data.Function (on)

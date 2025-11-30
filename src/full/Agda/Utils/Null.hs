@@ -13,7 +13,7 @@ import Control.Monad.Except   ( ExceptT )
 import Control.Monad.Identity ( Identity(..) )
 import Control.Monad.Reader   ( ReaderT )
 import Control.Monad.State    ( StateT  )
-import Control.Monad.Writer   ( WriterT )
+import Control.Monad.Writer.CPS   ( WriterT )
 import Control.Monad.Trans    ( lift    )
 import Control.Monad.Trans.Maybe
 

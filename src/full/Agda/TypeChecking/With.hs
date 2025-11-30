@@ -6,7 +6,7 @@ module Agda.TypeChecking.With where
 
 import Prelude hiding ((!!))
 
-import Control.Monad.Writer (WriterT, runWriterT, tell)
+import Control.Monad.Writer.CPS (WriterT, runWriterT, tell)
 
 import qualified Data.List as List
 import Data.Maybe

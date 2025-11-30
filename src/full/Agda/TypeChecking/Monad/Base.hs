@@ -21,7 +21,7 @@ import Control.Monad.Except         ( MonadError(..), ExceptT(..), runExceptT )
 import Control.Monad.IO.Class       ( MonadIO(..) )
 import Control.Monad.State          ( MonadState(..), modify, StateT(..), runStateT )
 import Control.Monad.Reader         ( MonadReader(..), ReaderT(..), runReaderT )
-import Control.Monad.Writer         ( WriterT(..), runWriterT )
+import Control.Monad.Trans.Writer.CPS         ( WriterT, writerT, runWriterT )
 import Control.Monad.Trans          ( MonadTrans(..), lift )
 import Control.Monad.Trans.Control  ( MonadTransControl(..), liftThrough )
 import Control.Monad.Trans.Identity ( IdentityT(..), runIdentityT )
@@ -1294,7 +1294,7 @@ instance MonadStConcreteNames m => MonadStConcreteNames (StateT s m) where
     return ((x,s'),ns')
 
 instance (MonadStConcreteNames m, Monoid w) => MonadStConcreteNames (WriterT w m) where
-  runStConcreteNames m = WriterT $ runStConcreteNames $ StateT $ \ ns -> do
+  runStConcreteNames m = writerT $ runStConcreteNames $ StateT $ \ ns -> do
     ((x,ns'),w) <- runWriterT $ runStateT m ns
     return ((x,w),ns')
 

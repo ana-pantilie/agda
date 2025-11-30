@@ -12,7 +12,7 @@ import Control.Monad.Reader ( ReaderT )
 import Control.Monad.State ( StateT )
 import Control.Monad.Trans.Identity ( IdentityT )
 import Control.Monad.Trans.Maybe ( MaybeT )
-import Control.Monad.Writer ( WriterT )
+import Control.Monad.Writer.CPS ( WriterT )
 
 import Agda.TypeChecking.Monad.Base
 import Agda.TypeChecking.Monad.Builtin

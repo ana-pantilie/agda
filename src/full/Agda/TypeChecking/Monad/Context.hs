@@ -11,7 +11,7 @@ import Control.Monad.State
 import Control.Monad.Trans.Control  ( MonadTransControl(..), liftThrough )
 import Control.Monad.Trans.Identity ( IdentityT )
 import Control.Monad.Trans.Maybe
-import Control.Monad.Writer         ( WriterT )
+import Control.Monad.Writer.CPS         ( WriterT )
 
 import Data.Foldable
 import qualified Data.List as List

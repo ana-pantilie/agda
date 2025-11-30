@@ -5,7 +5,8 @@ module Agda.TypeChecking.Rules.LHS.Unify.Types where
 import Prelude hiding (null)
 
 import Control.Monad
-import Control.Monad.Writer (WriterT(..), MonadWriter(..))
+import Control.Monad.Writer.CPS (WriterT, MonadWriter(..))
+import Control.Monad.Trans.Writer.CPS (runWriterT, writerT)
 
 import Data.Foldable (toList)
 import Data.DList (DList)

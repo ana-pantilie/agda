@@ -7,7 +7,7 @@ import Control.Monad.Except   ( MonadError(..), ExceptT(..), runExceptT )
 import Control.Monad.IO.Class ( MonadIO(..) )
 import Control.Monad.Reader   ( ReaderT(..), runReaderT )
 import Control.Monad.State    ( gets, modify, StateT(..), runStateT )
-import Control.Monad.Writer   ( MonadWriter(..), WriterT(..), runWriterT )
+import Control.Monad.Writer.CPS   ( MonadWriter(..), WriterT(..), runWriterT )
 import Control.Monad.Trans    ( lift )
 
 import Data.Char

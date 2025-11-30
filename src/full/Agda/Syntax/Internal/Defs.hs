@@ -5,7 +5,7 @@
 module Agda.Syntax.Internal.Defs where
 
 import Control.Monad.Reader
-import Control.Monad.Writer
+import Control.Monad.Writer.CPS
 
 import qualified Data.Foldable as Fold
 

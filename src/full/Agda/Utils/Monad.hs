@@ -10,7 +10,7 @@ module Agda.Utils.Monad
 import Control.Monad.Except   ( MonadError(catchError, throwError), ExceptT, runExceptT )
 import Control.Monad.Identity ( runIdentity )
 import Control.Monad.State    ( MonadState(get, put) )
-import Control.Monad.Writer   ( MonadWriter(tell), Writer, WriterT, mapWriterT )
+import Control.Monad.Writer.CPS   ( MonadWriter(tell), Writer, WriterT, mapWriterT )
 
 import Data.Bifunctor         ( first, second )
 import Data.Bool              ( bool )

@@ -9,7 +9,8 @@ import qualified Control.Exception as E
 
 import Control.Monad.Except
 import Control.Monad.State
-import Control.Monad.Writer        ( WriterT, runWriterT, MonadWriter, tell )
+import Control.Monad.Writer.CPS        ( WriterT, MonadWriter, tell )
+import Control.Monad.Trans.Writer.CPS        ( runWriterT )
 import Control.Monad.IO.Class      ( MonadIO(..) )
 
 import Data.Bifunctor              ( first , second )

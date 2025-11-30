@@ -10,7 +10,7 @@ import Control.Monad.Reader         ( ReaderT )
 import Control.Monad.State          ( StateT )
 import Control.Monad.Trans.Identity ( IdentityT )
 import Control.Monad.Trans.Maybe
-import Control.Monad.Writer         ( WriterT )
+import Control.Monad.Writer.CPS         ( WriterT )
 
 import Data.Function ( on )
 import qualified Data.Map as Map
